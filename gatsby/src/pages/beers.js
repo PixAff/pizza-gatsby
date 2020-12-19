@@ -21,14 +21,12 @@ export const query = graphql`
       nodes {
         name
         price
+        image
         rating {
           reviews
           average
         }
-        image
       }
     }
   }
 `;
-
-// const beers = query.map((beer) => beer.name);

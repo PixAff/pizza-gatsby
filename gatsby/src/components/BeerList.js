@@ -1,6 +1,8 @@
 import React from "react";
 import styled from "styled-components";
 
+import defaultBeer from "../assets/images/defaultBeer.webp";
+
 const BeerGridStyles = styled.div`
   display: grid;
   gap: 2rem;
@@ -37,13 +39,16 @@ const BeerList = ({ beers }) => {
     //   tester.onerror = showBeer(false);
     //   tester.src = URL;
     // }
-
+    function addDefaultSrc(e) {
+      e.onerror = null;
+      e.target.src = defaultBeer;
+    }
     // testImage(beer.image);
 
     // if (!showTheBeer) return;
     return (
       <SingleBeerStyles key={beer.name}>
-        <img src={beer.image} alt={beer.name} />
+        <img onError={addDefaultSrc} src={beer.image} alt={beer.name} />
         <h3>{beer.name}</h3>
         {beer.price}
         <p title={`${rating} out of 5 stars`}>
