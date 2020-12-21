@@ -3,4 +3,10 @@
 /.pnp
 .pnp.js
 
-.env
+.env*
+
+# gatsby files
+.cache/
+public
+
+/gatsby/public
