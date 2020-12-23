@@ -53,14 +53,17 @@ async function turnToppingsIntoPages({ graphql, actions }) {
   });
 }
 
-async function fetchBeersandTurnIntoNodes({
+async function fetchBeersAndTurnIntoNodes({
   actions,
   createNodeId,
   createContentDigest,
 }) {
+  // 1. Fetch a  list of beers
   const res = await fetch("https://sampleapis.com/beers/api/ale");
   const beers = await res.json();
-  beers.forEach((beer) => {
+  // 2. Loop over each one
+  for (const beer of beers) {
+    // create a node for each beer
     const nodeMeta = {
       id: createNodeId(`beer-${beer.name}`),
       parent: null,
@@ -71,12 +74,12 @@ async function fetchBeersandTurnIntoNodes({
         contentDigest: createContentDigest(beer),
       },
     };
+    // 3. Create a node for that beer
     actions.createNode({
       ...beer,
       ...nodeMeta,
     });
-  });
-  // console.log("turn beers into nodes");
+  }
 }
 
 async function turnSliceMastersIntoPages({ graphql, actions }) {
@@ -122,7 +125,8 @@ async function turnSliceMastersIntoPages({ graphql, actions }) {
 }
 
 export async function sourceNodes(params) {
-  await Promise.all[fetchBeersandTurnIntoNodes(params)];
+  // fetch a list of beers and source them into our gatsby API!
+  await Promise.all([fetchBeersAndTurnIntoNodes(params)]);
 }
 
 export async function createPages(params) {
