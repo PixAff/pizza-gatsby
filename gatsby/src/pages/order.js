@@ -4,6 +4,8 @@ import Img from "gatsby-image";
 
 import SEO from "../components/SEO";
 import useForm from "../utils/useForm";
+import calculatePizzaPrice from "../utils/calculatePizzaPrice";
+import formatMoney from "../utils/formatMoney";
 
 export default function OrderPage({ data }) {
   const { values, updateValue } = useForm({
@@ -55,6 +57,7 @@ export default function OrderPage({ data }) {
                 {["S", "M", "L"].map((size) => (
                   <button key={size} type="button">
                     {size}
+                    {formatMoney(calculatePizzaPrice(pizza.price, size))}
                   </button>
                 ))}
               </div>
@@ -75,6 +78,7 @@ export const query = graphql`
       nodes {
         name
         id
+        price
         slug {
           current
         }
