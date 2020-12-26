@@ -35,7 +35,6 @@ export default function Pagination({
   base,
 }) {
   const totalPages = Math.ceil(totalCount / pageSize);
-  console.log(totalPages);
   const prevPage = currentPage - 1;
   const nextPage = currentPage + 1;
   const hasNextPage = nextPage <= totalPages;
