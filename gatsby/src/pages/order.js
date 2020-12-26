@@ -3,18 +3,26 @@ import { graphql } from "gatsby";
 import Img from "gatsby-image";
 
 import SEO from "../components/SEO";
+import PizzaOrder from "../components/PizzaOrder";
 import useForm from "../utils/useForm";
+import usePizza from "../utils/usePizza";
 import calculatePizzaPrice from "../utils/calculatePizzaPrice";
+import calculateOrderTotal from "../utils/calculateOrderTotal";
 import formatMoney from "../utils/formatMoney";
 import OrderStyles from "../styles/OrderStyles";
 import MenuItemStyles from "../styles/MenuItemStyles";
 
 export default function OrderPage({ data }) {
+  const pizzas = data.pizzas.nodes;
   const { values, updateValue } = useForm({
     name: "",
     email: "",
   });
-  const pizzas = data.pizzas.nodes;
+
+  const { order, addToOrder, removeFromOrder } = usePizza({
+    pizzas,
+    inputs: values,
+  });
   return (
     <div>
       <SEO title="Order a pizza!" />
@@ -57,7 +65,11 @@ export default function OrderPage({ data }) {
               </div>
               <div>
                 {["S", "M", "L"].map((size) => (
-                  <button key={size} type="button">
+                  <button
+                    key={size}
+                    type="button"
+                    onClick={() => addToOrder({ id: pizza.id, size })}
+                  >
                     {size}
                     {formatMoney(calculatePizzaPrice(pizza.price, size))}
                   </button>
@@ -68,6 +80,15 @@ export default function OrderPage({ data }) {
         </fieldset>
         <fieldset className="order">
           <legend>Order</legend>
+          <PizzaOrder
+            order={order}
+            removeFromOrder={removeFromOrder}
+            pizzas={pizzas}
+          />
+        </fieldset>
+        <fieldset>
+          <h3>Your total is {calculateOrderTotal(order, pizzas)}</h3>
+          <button type="submit">Order ahead!</button>
         </fieldset>
       </OrderStyles>
     </div>
