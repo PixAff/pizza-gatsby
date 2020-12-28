@@ -23,13 +23,36 @@ export default function usePizza({ pizzas, values }) {
   async function submitOrder(e) {
     e.preventDefault();
     setLoading(true);
+    setError(null);
+    setMessage(null);
+
     const body = {
       order: attachNamesAndPrices(order, pizzas),
       total: calculateOrderTotal(order, pizzas),
       name: values.name,
       email: values.email,
+      mapleSyrup: values.mapleSyrup,
     };
     console.log(body);
+    const res = await fetch(
+      `${process.env.GATSBY_SERVERLESS_BASE}/placeOrder`,
+      {
+        method: "POST",
+        headers: {
+          "content-type": "application/json",
+        },
+        body: JSON.stringify(body),
+      }
+    );
+    const text = JSON.parse(await res.text());
+    if (res.status >= 400 && res.status < 600) {
+      setLoading(false);
+      setError(text.message);
+    } else {
+      setLoading(false);
+      setMessage("Success! Come and grab your pizza in 10!");
+      setOrder([]);
+    }
   }
   return {
     order,
