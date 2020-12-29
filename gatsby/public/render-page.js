@@ -31828,7 +31828,9 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
 
 function Footer() {
-  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("footer", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, "\xA9 Slicks Slices ", new Date().getFullYear()));
+  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("footer", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", {
+    className: "center"
+  }, "\xA9 Slicks Slices ", new Date().getFullYear()));
 }
 
 /***/ }),
@@ -31947,7 +31949,7 @@ __webpack_require__.r(__webpack_exports__);
 
 var NavStyles = styled_components__WEBPACK_IMPORTED_MODULE_1__["default"].nav.withConfig({
   displayName: "Nav__NavStyles"
-})(["margin-bottom:3rem;.logo{transform:translateY(-25%);}ul{margin:0;padding:0;text-align:center;list-style:none;display:grid;grid-template-columns:1fr 1fr auto 1fr 1fr;grid-gap:2rem;align-items:center;margin-top:-6rem;}li{--rotate:-2deg;transform:rotate(var(--rotate));order:1;&:nth-child(1){--rotate:1deg;}&:nth-child(2){--rotate:-2.5deg;}&:nth-child(4){--rotate:2.5deg;}&:hover{--rotate:3deg;}}a{font-size:3rem;text-decoration:none;&:hover{color:red;}}"]);
+})([".logo{transform:translateY(-25%);}ul{margin:0;padding:0;text-align:center;list-style:none;display:grid;grid-template-columns:1fr 1fr auto 1fr 1fr;grid-gap:2rem;align-items:center;margin-top:-6rem;}li{--rotate:-2deg;transform:rotate(var(--rotate));order:1;&:nth-child(1){--rotate:1deg;}&:nth-child(2){--rotate:-2.5deg;}&:nth-child(4){--rotate:2.5deg;}&:hover{--rotate:3deg;}}a{font-size:3rem;text-decoration:none;&:hover{color:red;}}"]);
 function Nav() {
   return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(NavStyles, null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("ul", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(gatsby__WEBPACK_IMPORTED_MODULE_2__["Link"], {
     to: "/"

@@ -11,7 +11,7 @@ function CurrentlySlicing({ slicemasters }) {
       <h2 className="center">
         <span className="mark tilt">Slicemasters ON:</span>
       </h2>
-      <p>Standing by to slicing you up!</p>
+      <p>Standing by to slice you up!</p>
       {!slicemasters && <LoadingGrid count={4} />}
       {slicemasters && !slicemasters?.length && (
         <p>No one is working right now</p>
